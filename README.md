@@ -4,10 +4,6 @@
 
 You can use [Cifar 10](https://github.com/rstefan1/Cifar10)
 
-```bash
-git clone https://github.com/rstefan1/Cifar10
-```
-
 ## Train your model and export the trained model 
 
 To export the model, use this function:
@@ -37,5 +33,7 @@ def export_model(saver, model, input_node_names, output_node_name):
 
     print("graph saved!")
 ```
+
+An example of keras model (Cifar 10) can be found at [example-model](https://github.com/rstefan1/Deploying-a-Keras-Model-on-Android/keras-model/example-model.py)
 
 
