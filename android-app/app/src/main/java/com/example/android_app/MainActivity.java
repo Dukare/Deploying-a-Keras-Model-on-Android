@@ -10,13 +10,28 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
+import org.tensorflow.contrib.android.TensorFlowInferenceInterface;
 
 public class MainActivity extends AppCompatActivity {
+
+    static {
+        System.loadLibrary("tensorflow_inference");
+    }
+
+    private TensorFlowInferenceInterface inferenceInterface;
+
+    private static final String MODEL_FILE = "file:///android_asset/frozen_cifar10.pb";
+    private static final String INPUT_NODE = "conv2d_1_input";
+    private static final String OUTPUT_NODE = "dense_3/Softmax";
+
+    private static final int[] INPUT_SIZE = {32,32,3};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        inferenceInterface = new TensorFlowInferenceInterface(getAssets(), MODEL_FILE);
 
         GridView gridview = (GridView) findViewById(R.id.gridView);
         gridview.setAdapter(new ImageAdapter(this));
