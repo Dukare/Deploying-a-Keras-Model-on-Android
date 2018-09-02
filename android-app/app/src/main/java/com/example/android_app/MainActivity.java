@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 0; i < intValues.length; ++i) {
                     final int val = intValues[i];
-                    floatValues[i * 3 + 0] = ((val >> 16) & 0xFF);
-                    floatValues[i * 3 + 1] = ((val >> 8) & 0xFF);
-                    floatValues[i * 3 + 2] = (val & 0xFF);
+                    floatValues[i * 3 + 0] = ((val >> 16) & 0xFF) / 255;
+                    floatValues[i * 3 + 1] = ((val >> 8) & 0xFF) / 255;
+                    floatValues[i * 3 + 2] = (val & 0xFF) / 255;
                 }
 
                 inferenceInterface.feed(INPUT_NODE, floatValues, 1L, 32L, 32L, 3L);
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String resultStr = "";
                 for (int i = 0; i < 10; ++i){
-                    if (result[i] * 100 > 50L){
+                    if (result[i] * 100 > 1L){
                         resultStr += (result[i] * 100) + " " + classes[i] + " | ";
                     }
                 }
